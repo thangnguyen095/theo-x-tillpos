@@ -18,12 +18,17 @@ export default class Checkout {
     this.items.push(item);
   }
 
-  total(): number {
-    // subtotal without any discount
+  subtotal(): number {
     let total = this.items.reduce(
       (prev, curr) => prev + curr.price * curr.amount,
       0
     );
+    return total;
+  }
+
+  total(): number {
+    // subtotal without any discount
+    let total = this.subtotal()
 
     if (this.promotions && this.promotions.length) {
       // if there's any promotions, find the total discount value
