@@ -3,18 +3,21 @@
         "id": 1,
         "name": "Small Pizza",
         "description": "10\" pizza for one person",
+        "image": "/images/pizza.jpeg",
         "price": 11.99
     },
     {
         "id": 2,
         "name": "Medium Pizza",
         "description": "12\" pizza for two persons",
+        "image": "/images/pizza.jpeg",
         "price": 15.99
     },
     {
         "id": 3,
         "name": "Large Pizza",
         "description": "15\" pizza for four persons",
+        "image": "/images/pizza.jpeg",
         "price": 21.99
     }
 ]

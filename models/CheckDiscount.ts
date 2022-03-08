@@ -1,6 +1,6 @@
 import Item from "./Item";
 
 export default interface CheckDiscount {
-  customerId: number;
+  customerId?: number;
   items?: Item[]
 }
