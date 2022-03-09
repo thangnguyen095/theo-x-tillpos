@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addToCart, getDiscount } from "actions/cart.action";
+import { addToCart, getDiscount, resetCart } from "actions/cart.action";
 import Item from "models/Item";
 
 export interface CartState {
@@ -7,10 +7,15 @@ export interface CartState {
   loading?: boolean;
   discount: number;
   total: number;
+  subtotal: number;
 }
 
 export default createReducer<CartState>(
-  { discount: 0, total: 0 },
+  {
+    discount: 0,
+    total: 0,
+    subtotal: 0,
+  },
   (builder) => {
     builder
       .addCase(getDiscount.pending, (state) => {
@@ -18,11 +23,36 @@ export default createReducer<CartState>(
       })
       .addCase(getDiscount.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.discount = payload.subtotal - payload.total;
         state.total = payload.total;
+        state.subtotal = payload.subtotal;
+        state.discount =
+          Math.round(
+            (payload.subtotal - payload.total + Number.EPSILON) * 100
+          ) / 100;
       })
-      .addCase(addToCart, (state) => {
-        // TODO: handle state change for add to cart
+      .addCase(resetCart, (state) => {
+        state.loading = false;
+        state.total = 0;
+        state.discount = 0;
+        state.subtotal = 0;
+      })
+      .addCase(addToCart, (state, { payload }) => {
+        const items = state.items || [];
+        let itemIdx = items.findIndex((item) => item.id == payload.id);
+        if (itemIdx == -1) {
+          // newly added
+          items?.unshift(payload);
+          itemIdx = 0;
+        }
+        if (payload.amount == 0) {
+          // if amount equals zero, remove it from cart
+          items?.splice(itemIdx, 1);
+        } else {
+          // else, update the quantity
+          items[itemIdx].amount = payload.amount;
+        }
+
+        state.items = items;
       });
   }
 );

@@ -1,0 +1,24 @@
+.items {
+  min-height: 300px;
+}
+
+.summary {
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+
+    .left {
+      font-weight: bold;
+    }
+    .right {
+      text-align: right;
+    }
+  }
+}
+
+.checkout {
+  margin-top: 1em;
+  text-align: center;
+}

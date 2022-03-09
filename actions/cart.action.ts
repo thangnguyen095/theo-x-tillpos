@@ -15,3 +15,5 @@ export const getDiscount = createAsyncThunk(
     return data;
   }
 );
+
+export const resetCart = createAction("@cart/reset");
