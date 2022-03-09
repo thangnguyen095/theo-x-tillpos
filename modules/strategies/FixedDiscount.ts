@@ -14,7 +14,7 @@ export default class FixedDiscount implements DiscountStrategy {
     let totalDiscount = 0;
     for (let item of items) {
       if (item.id == params.productId) {
-        totalDiscount += params.amount;
+        totalDiscount += params.amount * item.amount;
       }
     }
 

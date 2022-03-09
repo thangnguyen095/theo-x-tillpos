@@ -21,7 +21,7 @@
         }
     },
     {
-        "customerId": 1,
+        "customerId": 3,
         "strategy": {
             "name": "GetXForY",
             "params": {
