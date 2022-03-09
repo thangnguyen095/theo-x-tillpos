@@ -1,21 +1,39 @@
-# Next.js + Jest
+# Theo X Till POS
 
-This example shows how to configure Jest to work with Next.js.
+A simple project, built with Next.js (BE + FE) with Jest as the testing framework, to solve and demonstrate the problem of having dynamic configurable discount strategies for each of the different customer.
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
+## Run the project
 
-## How to Use
+### Using npm
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
-
-In your terminal, run the following command:
-
+To run the project in development mode, simply use the command:
 ```bash
-npx create-next-app --example with-jest with-jest-app
-# or
-yarn create next-app --example with-jest with-jest-app
+npm run dev
 ```
 
+To run in production ready mode:
+- First build the project into distributable files:
+```bash
+npm run build
+```
+- Then start the server with:
+```bash
+npm start
+```
+
+### Using docker
+
+First, build the project into a docker image using the command:
+```bash
+docker build -t <image:tag> .
+```
+
+Start a docker container to run a server at default port with:
+```bash
+docker run -p 3000:3000 <image:tag>
+```
+
+#### Afterwards, the application should be accessible via localhost http://localhost:3000
 ## Run Jest Tests
 
 ```bash
