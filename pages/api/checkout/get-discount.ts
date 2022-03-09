@@ -11,7 +11,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const body: CheckDiscount = req.body;
-  const promotions = promotionService.getCustomerPromotions(body.customerId);
+  const promotions = body.customerId
+    ? promotionService.getCustomerPromotions(body.customerId)
+    : [];
 
   const checkout = new Checkout(promotions);
   if (body.items && body.items.length) {

@@ -23,12 +23,12 @@ export default class Checkout {
       (prev, curr) => prev + curr.price * curr.amount,
       0
     );
-    return total;
+    return Math.round((total + Number.EPSILON) * 100) / 100;
   }
 
   total(): number {
     // subtotal without any discount
-    let total = this.subtotal()
+    let total = this.subtotal();
 
     if (this.promotions && this.promotions.length) {
       // if there's any promotions, find the total discount value
